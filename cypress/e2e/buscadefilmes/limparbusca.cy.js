@@ -1,7 +1,9 @@
 /// <reference types  = "cypress"/>
 describe('US-001-Funcionalidade: Busca de filmes', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
   it('Deve limpar campo de busca', () => {
-    cy.visit('http://127.0.0.1:8080/')
     cy.get('#search-input').type('jurassic')
     cy.get('#search-button').click()
     cy.get('#results-section').should('exist')

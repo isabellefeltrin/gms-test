@@ -3,7 +3,6 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
   beforeEach(() => {
     cy.visit('/')
   })
-  
   it('Deve validdar senha fraca', () => {
     cy.get('#signup-firstname').type('Isabelle')
     cy.get('#signup-lastname').type('Feltrin')

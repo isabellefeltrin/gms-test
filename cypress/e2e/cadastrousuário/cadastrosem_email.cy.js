@@ -12,3 +12,4 @@ describe('US-012-Funcionalidade: Cadastro de membros', () => {
     cy.get('#signup-response', {timeout: 10000}).should('contain', 'E-mail não pode estar vazio')
   })
 })
+
