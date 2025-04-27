@@ -1,7 +1,9 @@
 /// <reference types  = "cypress"/>
 describe('US-012-Funcionalidade: Cadastro de membros', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
   it('Deve validar cadastro de email', () => {
-    cy.visit('http://127.0.0.1:8080/')
     cy.get('#signup-firstname').type('Isabelle')
     cy.get('#signup-lastname').type('Feltrin')
     cy.get('#signup-phone').type('11234567898')
