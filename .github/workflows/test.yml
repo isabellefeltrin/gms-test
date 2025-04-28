@@ -1,12 +1,26 @@
 name: End-to-end tests
-on: push
+
+on: 
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Cypress run
+
+      - name: Set up Cypress
         uses: cypress-io/github-action@v6
-        with: 
+        with:
           browser: chrome
+
+      - name: Install dependencies
+        run: npm install 
+      - name: Run Cypress tests with mochawesome reporter
+        run: npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/results
+
+      - name: Upload Cypress results as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-results
+          path: cypress/results
