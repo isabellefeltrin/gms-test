@@ -29,4 +29,18 @@ describe('US-001-Funcionalidade: Busca de filmes', () => {
     cy.get('#results-section').should('contain',filmes.titulo)
     })
   });
+
+  it('deve validar campo busca',() => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('teste')
+    })
+
+    cy.get('#search-button').click();
+    cy.get('@teste').should('have.been.calledOnce');
+    cy.get('@teste').should('have.been.calledWith','Por favor, digite o nome de um filme')
+  })
 })
+
+
+
+  
