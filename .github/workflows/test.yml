@@ -3,7 +3,8 @@ name: End-to-end tests
 on: 
   push:
     branches:
-      - main  
+      - main 
+
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
@@ -19,12 +20,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install  
-
       - name: Run Cypress tests with mochawesome reporter
         run: npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/results
 
+      - name: Create results directory if not exists
+        run: mkdir -p cypress/results 
       - name: Upload Cypress results as artifact
         uses: actions/upload-artifact@v2
         with:
           name: cypress-results
-          path: cypress/results
+          path: cypress/results/**/* 
