@@ -20,11 +20,19 @@ jobs:
 
       - name: Install dependencies
         run: npm install  
+
+      - name: Start the server
+        run: npm start &  
+
+      - name: Wait for the server to start
+        run: sleep 10 
+
       - name: Run Cypress tests with mochawesome reporter
         run: npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/results
 
       - name: Create results directory if not exists
         run: mkdir -p cypress/results 
+
       - name: Upload Cypress results as artifact
         uses: actions/upload-artifact@v2
         with:

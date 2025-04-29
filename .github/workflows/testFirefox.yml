@@ -1,11 +1,27 @@
 name: Firefox
-on: push
+
+on:
+  push:
+
 jobs:
   firefox:
     runs-on: ubuntu-24.04
     name: E2E on Firefox
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: cypress-io/github-action@v6
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install  
+
+      - name: Start the server
+        run: npm start &  
+
+      - name: Wait for the server to start
+        run: sleep 10  
+
+      - name: Run Cypress tests on Firefox
+        uses: cypress-io/github-action@v6
         with:
           browser: firefox
